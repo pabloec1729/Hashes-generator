@@ -1,0 +1,65 @@
+`include "clock.v"
+`include "CMOS/cmos_cells.v"
+`include "RAM_memory.v"
+`include "probador_RAM_memory.v"
+//`include "RAM_synth.v"
+
+module tbtop;
+/*AUTOWIRE*/
+// Beginning of automatic wires (for undeclared instantiated-module outputs)
+wire			clk;			// From reloj of clock.v
+wire [9:0]	data_in;		// From tb_RAM of probador_RAM_memory.v
+wire [9:0]	data_out;		// From RAM of RAM_memory.v, ..., Couldn't Merge
+wire [2:0]	rd_ptr;			// From tb_RAM of probador_RAM_memory.v
+wire			read;			// From tb_RAM of probador_RAM_memory.v
+wire			reset_L;		// From tb_RAM of probador_RAM_memory.v
+wire [2:0]	wr_ptr;			// From tb_RAM of probador_RAM_memory.v
+wire			write;			// From tb_RAM of probador_RAM_memory.v
+// End of automatics
+
+   clock reloj (/*AUTOINST*/
+		// Outputs
+		.clk			(clk));
+   
+   RAM_memory RAM (/*AUTOINST*/
+		   // Outputs
+		   .data_out		(data_out[9:0]),
+		   // Inputs
+		   .clk			(clk),
+		   .read		(read),
+		   .write		(write),
+		   .reset_L		(reset_L),
+		   .data_in		(data_in[9:0]),
+		   .wr_ptr		(wr_ptr[2:0]),
+		   .rd_ptr		(rd_ptr[2:0]));
+   
+   probador_RAM_memory tb_RAM (/*AUTOINST*/
+			       // Outputs
+			       .read		(read),
+			       .write		(write),
+			       .reset_L		(reset_L),
+			       .data_in		(data_in[9:0]),
+			       .wr_ptr		(wr_ptr[2:0]),
+			       .rd_ptr		(rd_ptr[2:0]),
+			       // Inputs
+			       .clk		(clk),
+			       .data_out	(data_out[9:0]));
+   
+   RAM_synth RAM_synthe (/*AUTOINST*/
+			 // Outputs
+			 .data_out		(data_out[9:0]),
+			 // Inputs
+			 .clk			(clk),
+			 .data_in		(data_in[9:0]),
+			 .rd_ptr		(rd_ptr[2:0]),
+			 .read			(read),
+			 .reset_L		(reset_L),
+			 .wr_ptr		(wr_ptr[2:0]),
+			 .write			(write));
+   
+endmodule
+
+
+
+
+

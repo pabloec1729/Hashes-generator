@@ -1,0 +1,14 @@
+read_verilog generador_nonce.v
+hierarchy -check -top generador_nonce
+
+proc; opt; fsm; opt; memory; opt; techmap; opt;
+
+dfflibmap -liberty ./CMOS/cmos_cells.lib
+
+abc -liberty ./CMOS/cmos_cells.lib
+
+clean
+
+show -notitle -format pdf -prefix modulo_diagramCMOS -lib ./CMOS/cmos_cells.v
+
+write_verilog  generador_nonce_synth.v

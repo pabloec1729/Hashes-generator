@@ -1,0 +1,167 @@
+//Init task for clean output signals
+
+task drv_init;
+  begin @(posedge clk)//Inicializando registros e enable = 0
+	reset_L = 0;    
+	enable = 0;
+	@(posedge clk)
+	reset_L = 0;
+	enable = 0;
+	@(posedge clk)//reset_L = 1
+	reset_L = 1;  
+	enable = 0;
+	@(posedge clk)
+	reset_L = 1;
+	enable = 0;
+	@(posedge clk)//enable = 1 el tiempo suficiente para comprobar que el contador se reinicia
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //1
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //2
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //3
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //4
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;
+	enable = 0;
+	@(posedge clk)//enable = 1
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //11
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;
+	enable = 0;
+	@(posedge clk)//enable = 1
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //23
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //enable =0, ultima linea agregada a este archivo
+	reset_L = 1;  
+	enable = 0;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 0;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 0;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 0;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //31
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk)//enable = 0, debería guardar el valor anterior
+	reset_L = 1;  
+	enable = 0;  
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 0;  
+	@(posedge clk) //otra vez enable = 1, debería continuar contando
+	reset_L = 1;  
+	enable = 1;  
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;  
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;  
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 1;
+	@(posedge clk) //reset_L = 0, el contador debería volver a cero
+	reset_L = 0;  
+	enable = 1; 
+	@(posedge clk)
+	reset_L = 0;  
+	enable = 1; 
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 0;   //Se sube el reset pero con enable = 0, se debería mantener el cero   
+	@(posedge clk)
+	reset_L = 1;  
+	enable = 0;  
+	@(posedge clk) //Se vuelve a dejar operando con normalidad
+	reset_L = 1;  
+	enable = 1; 
+	@(posedge clk) //Se vuelve a dejar operando con normalidad
+	reset_L = 1;  
+	enable = 1;  
+	@(posedge clk) 
+	reset_L = 0;  
+	enable = 1;   
+	@(posedge clk) 
+	reset_L = 1;  
+	enable = 1; 
+end
+endtask
+
+/////////////////////////////
+
+
+
+
+
+
+
+
+
+
